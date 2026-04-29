@@ -85,4 +85,8 @@ Page({
       },
     })
   },
+
+  onUnload() {
+    clearInterval(this._timerInterval)
+  },
 })

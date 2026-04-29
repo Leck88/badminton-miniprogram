@@ -3,6 +3,7 @@ page {
   background: #0f1117;
   color: #f0f0f0;
   font-family: -apple-system, 'PingFang SC', sans-serif;
+  box-sizing: border-box;
 }
 
 .gradient-text {
@@ -17,6 +18,8 @@ page {
   border: 1rpx solid rgba(255,255,255,0.1);
   border-radius: 24rpx;
   backdrop-filter: blur(10px);
+  padding: 32rpx;
+  margin: 24rpx;
 }
 
 .btn-primary {
@@ -29,7 +32,10 @@ page {
   justify-content: center;
   height: 88rpx;
   font-size: 30rpx;
+  border: none;
 }
+
+.btn-primary::after { border: none; }
 
 .btn-secondary {
   background: rgba(255,255,255,0.08);
@@ -42,6 +48,8 @@ page {
   height: 88rpx;
   font-size: 30rpx;
 }
+
+.btn-secondary::after { border: none; }
 
 .tag {
   background: rgba(0,212,255,0.15);
@@ -62,4 +70,46 @@ page {
   color: rgba(255,255,255,0.5);
   font-weight: 500;
   margin-bottom: 16rpx;
+}
+
+/* 容器 */
+.container {
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+  padding-top: 24rpx;
+}
+
+/* 页面标题 */
+.page-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  margin: 24rpx 0 40rpx;
+}
+
+/* 渐变背景区块 */
+.gradient-bg {
+  background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,255,136,0.1));
+}
+
+/* 安全区域底部留白 */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 通用输入框 */
+.input-field {
+  background: rgba(255,255,255,0.08);
+  border: 1rpx solid rgba(255,255,255,0.15);
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  color: #fff;
+  font-size: 28rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field::placeholder {
+  color: rgba(255,255,255,0.35);
 }
