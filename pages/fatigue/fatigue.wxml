@@ -1,0 +1,61 @@
+<!--疲劳自测页-->
+<view class="container">
+
+  <!-- 问卷阶段 -->
+  <block wx:if="{{!result && !loading}}">
+    <view class="page-title">🔍 疲劳自测</view>
+    <view class="progress-wrap">
+      <view class="progress-bar">
+        <view class="progress-fill" style="width:{{(step/questions.length)*100}}%"></view>
+      </view>
+      <text class="progress-text">{{step}}/{{questions.length}}</text>
+    </view>
+
+    <block wx:if="{{step < questions.length}}">
+      <view class="card q-card">
+        <text class="q-num">Q{{step+1}}</text>
+        <text class="q-text">{{questions[step].text}}</text>
+        <view class="options">
+          <view class="option-item"
+            wx:for="{{questions[step].options}}" wx:key="index"
+            bindtap="answer"
+            data-qid="{{questions[step].id}}"
+            data-score="{{questions[step].scores[index]}}">
+            <text class="option-icon">{{index===0?'😊':index===1?'😐':'😩'}}</text>
+            <text class="option-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <!-- 加载中 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <text class="loading-text">⏳ AI 评估中...</text>
+  </view>
+
+  <!-- 结果阶段 -->
+  <block wx:if="{{result}}">
+    <view class="page-title">📊 评估结果</view>
+    <view class="card result-card {{result.fatigue_level}}">
+      <text class="result-icon">{{result.fatigue_level==='low'?'🟢':result.fatigue_level==='medium'?'🟡':'🔴'}}</text>
+      <text class="result-level">{{result.fatigue_level==='low'?'状态良好':result.fatigue_level==='medium'?'适度疲劳':'高度疲劳'}}</text>
+      <text class="result-score">综合评分：{{result.score}}/{{questions.length*2}}</text>
+    </view>
+
+    <view class="card advice-card">
+      <text class="advice-title">💡 建议</text>
+      <text class="advice-text">{{result.recommendation}}</text>
+    </view>
+
+    <view class="card areas-card" wx:if="{{result.priority_areas && result.priority_areas.length}}">
+      <text class="areas-title">🎯 优先恢复部位</text>
+      <view class="areas">
+        <text class="tag" wx:for="{{result.priority_areas}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+
+    <button class="btn-primary reset-btn" bindtap="reset">🔄 重新测试</button>
+  </block>
+
+</view>

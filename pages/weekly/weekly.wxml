@@ -1,0 +1,49 @@
+<!--周恢复计划页-->
+<view class="container">
+
+  <!-- 选择频率 -->
+  <block wx:if="{{!plan && !loading}}">
+    <view class="page-title">📅 周恢复计划</view>
+    <view class="card section">
+      <text class="section-label">你每周打球几次？</text>
+      <view class="freq-grid">
+        <view class="freq-item {{selectedFreq === item.value ? 'active' : ''}}"
+          wx:for="{{freqOptions}}" wx:key="value"
+          bindtap="selectFreq" data-val="{{item.value}}">
+          <text class="freq-emoji">{{item.emoji}}</text>
+          <text class="freq-label">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+    <button class="btn-primary" bindtap="generate">🗓 生成我的周计划</button>
+  </block>
+
+  <!-- 加载中 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <text class="loading-text">⏳ AI 制定计划中...</text>
+  </view>
+
+  <!-- 周计划结果 -->
+  <block wx:if="{{plan}}">
+    <view class="plan-header">
+      <text class="page-title">{{plan.title}}</text>
+    </view>
+
+    <view class="card day-card" wx:for="{{plan.days}}" wx:key="day">
+      <text class="day-icon">{{item.icon}}</text>
+      <view class="day-info">
+        <text class="day-name">{{item.day}}</text>
+        <text class="day-type {{item.type}}">{{item.type==='train'?'训练日':item.type==='recover'?'恢复日':'休息日'}}</text>
+        <text class="day-content">{{item.content}}</text>
+      </view>
+    </view>
+
+    <view class="card tips-card">
+      <text class="tips-icon">💡</text>
+      <text class="tips-text">{{plan.tips}}</text>
+    </view>
+
+    <button class="btn-secondary reset-btn" bindtap="reset">🔄 重新生成</button>
+  </block>
+
+</view>
