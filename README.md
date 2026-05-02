@@ -27,8 +27,8 @@
 ### 2. 导入项目
 
 1. 打开微信开发者工具，点击「导入项目」
-2. 选择本目录 `D:\羽神微信小程序\badminton-miniprogram\miniprogram`
-3. 填入 AppID：`wx9483b7d53ee19f01`（或使用测试号）
+2. 选择本目录 `badminton-miniprogram/miniprogram`
+3. 填入你自己的微信小程序 AppID
 4. 点击「导入」即可预览
 
 ### 3. AI 功能配置（如需使用问答功能）

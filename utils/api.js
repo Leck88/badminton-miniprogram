@@ -1,4 +1,8 @@
-const API_BASE = 'http://129.226.152.47:8001/api/v1'
+// utils/api.js - API 配置
+// ⚠️ 生产环境中请将 API 地址和 Key 放在服务端配置，此文件不应包含敏感信息
+// 推荐方案：使用微信云开发环境变量，或自己的后端代理
+
+const API_BASE = 'https://YOUR_API_DOMAIN.com/api/v1'
 
 function request(url, method = 'GET', data = null) {
   return new Promise((resolve, reject) => {
